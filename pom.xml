@@ -4,6 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
     <modules>
         <module>twitter-to-kafka-service</module>
+        <module>app-config-data</module>
+        <module>kafka</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -17,6 +19,7 @@
     <name>microservices-demo</name>
     <description>Microservices demo project for Spring Boot</description>
     <packaging>pom</packaging>
+
     <properties>
         <java.version>16</java.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -36,6 +39,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--LOCAL-->
+            <dependency>
+                <groupId>com.microservices.demo</groupId>
+                <artifactId>app-config-data</artifactId>
+                <version>${project.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
@@ -56,7 +65,6 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
-                <scope>provided</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -69,13 +77,13 @@
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <release>16</release>
-<!--                    <annotationProcessorPaths>-->
-<!--                        <path>-->
-<!--                            <groupId>org.springframework.boot</groupId>-->
-<!--                            <artifactId>spring-boot-configuration-processor</artifactId>-->
-<!--                            <version>2.4.5</version>-->
-<!--                        </path>-->
-<!--                    </annotationProcessorPaths>-->
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>
